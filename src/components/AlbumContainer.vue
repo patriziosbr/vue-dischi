@@ -1,8 +1,8 @@
 <template>
 
-    <div class="backg">
-        <section>
-            <div class="albums col-6 col-md-4 col-lg-3" v-for="(album, index) in albums" :key="index">
+    <div class="backg container-fluid">
+        <section class="row align-items-center">
+            <div class="albums col-sm-6 col-md-4 my-col-lg-2" v-for="(album, index) in albums" :key="index">
                 <AlbumItem :item="album" />
             </div>
         </section>
@@ -43,15 +43,22 @@ export default {
   .backg {
     background-color: $bg-body;
   }
+
+  // max-width: sectin
+
   section {
-    width: 80%;
+    width: 62%;
     padding: 56px 0;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
+  }
+  .my-col-lg-2 {
+      width: calc(100% / 5);
   }
 
     .albums {
-    margin: 8px 16px;
+        // border: 1px solid #fff;
+        margin-bottom: 16px;
     }
 </style>
