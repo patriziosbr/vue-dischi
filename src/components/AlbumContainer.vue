@@ -1,16 +1,38 @@
 <template>
 
-    <section>
-        <div class="albums">
-            
-        </div>
-    </section>
+    <div class="backg">
+        <section>
+            <div class="albums col-6 col-md-4 col-lg-3" v-for="(album, index) in albums" :key="index">
+                <AlbumItem :item="album" />
+            </div>
+        </section>
+    </div>
 
 </template>
 
 <script>
+import AlbumItem from './AlbumItem'
+import axios from 'axios'
+
 export default {
-    name: "AlbumContainer"
+    name: "AlbumContainer",
+    components: {
+        AlbumItem
+    },
+    data() {
+        return {
+            api: 'https://flynn.boolean.careers/exercises/api/array/music',
+            albums: []
+        }
+    },
+    created: function() {
+        axios.get(this.api).then(
+            (resp) => {
+                this.albums = resp.data.response;
+                console.log(this.albums);
+            }
+        )
+    }
 
 }
 </script>
@@ -18,19 +40,18 @@ export default {
 <style lang="scss" scoped>
 @import "../style/vars.scss";
 
-  section {
-    height: calc(100vh - 60px);
+  .backg {
     background-color: $bg-body;
+  }
+  section {
+    width: 80%;
+    padding: 56px 0;
+    margin: 0 auto;
     display: flex;
-    
-    
+    flex-wrap: wrap;
   }
 
     .albums {
-        margin: auto;
-        width: 900px;
-        height: 500px;
-        border: 1px solid #fff;
-     
+    margin: 8px 16px;
     }
 </style>
