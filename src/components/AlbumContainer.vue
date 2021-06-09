@@ -40,25 +40,28 @@ export default {
 <style lang="scss" scoped>
 @import "../style/vars.scss";
 
-  .backg {
+    .backg {
     background-color: $bg-body;
-  }
+    }
 
-  // max-width: sectin
-
-  section {
+    section {
     width: 62%;
     padding: 56px 0;
     margin: 0 auto;
     // display: flex;
     // flex-wrap: wrap;
-  }
-  .my-col-lg-2 {
-      width: calc(100% / 5);
-  }
-
+    }
+  
     .albums {
         // border: 1px solid #fff;
         margin-bottom: 16px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        
+        .my-col-lg-2 {
+          width: calc(100% / 5);
+        }
+        
     }
 </style>
