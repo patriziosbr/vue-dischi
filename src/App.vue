@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+
+    <Header />
+
+  
+    <AlbumContainer />
+    
+
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Header from "./components/Header.vue"
+import AlbumContainer from "./components/AlbumContainer.vue"
+import "../src/style/general.scss"
+// import { component } from 'vue/types/umd' QUESTO CHE COSA è?
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    AlbumContainer
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
+
 </style>
