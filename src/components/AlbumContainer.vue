@@ -59,8 +59,8 @@ export default {
         }
     },
     methods: {
-        genreMethod: function(fromson) {
-            this.userChoice = fromson;
+        genreMethod: function(fromSon) {
+            this.userChoice = fromSon;
         }
     },
     created: function() {
