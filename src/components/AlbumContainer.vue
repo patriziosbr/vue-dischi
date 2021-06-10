@@ -1,37 +1,59 @@
 <template>
 
     <div class="backg container-fluid">
-        <section class="row align-items-center">
+
+        <section class="row mySection">
+
+            <div class="col-11 text-end">
+
+               <SelecGenre @selectedOpt="genreMethod"/>
+
+            </div>
+
+        </section>
+
+        <section class="row mySection" v-if="load == false">
             <div class="albums col-sm-6 col-md-4 my-col-lg-2" v-for="(album, index) in albums" :key="index">
                 <AlbumItem :item="album" />
             </div>
         </section>
+        <Loader loadingtext="just a sec featching data" v-else/>
     </div>
 
 </template>
 
 <script>
 import AlbumItem from './AlbumItem'
+import SelecGenre from './SelecGenre'
+import Loader from './Loader'
 import axios from 'axios'
 
 export default {
     name: "AlbumContainer",
     components: {
-        AlbumItem
+        AlbumItem,
+        Loader,
+        SelecGenre
     },
     data() {
         return {
             api: 'https://flynn.boolean.careers/exercises/api/array/music',
-            albums: []
+            albums: [],
+            load: true
         }
     },
     created: function() {
         axios.get(this.api).then(
             (resp) => {
                 this.albums = resp.data.response;
-                console.log(this.albums);
+                // console.log(this.albums); la arrowfunction per lo scope !!!!!!!!
+                    this.load = false; 
+                // setTimeout( () => {
+                //     this.load = false; 
+                // }, 500)
             }
         )
+        .catch()
     }
 
 }
@@ -44,12 +66,11 @@ export default {
     background-color: $bg-body;
     }
 
-    section {
+    .mySection {
     width: 62%;
     padding: 56px 0;
     margin: 0 auto;
-    // display: flex;
-    // flex-wrap: wrap;
+    border: 1px solid #fff;
     }
   
     .albums {

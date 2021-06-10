@@ -19,7 +19,7 @@ export default {
 
     .discItem {
         width: 180px;
-        height: 300px;
+        height: 280px;
         padding: 16px;
         background-color: $bg-header;
         text-align: center;
