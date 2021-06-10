@@ -1,10 +1,10 @@
 <template>
-   <select name="genre" id="myGenre" v-model="slectedGen">
-        <option value="All" @click="$emit('selectedOpt', slectedGen)">All</option>
-        <option value="Rock" @click="$emit('selectedOpt', slectedGen)" >Rock</option>
-        <option value="Pop" @click="$emit('selectedOpt', slectedGen)" >Pop</option>
-        <option value="Jazz" @click="$emit('selectedOpt', slectedGen)" >Jazz</option>
-        <option value="Metal" @click="$emit('selectedOpt', slectedGen)" >Metal</option>
+   <select name="genre" id="myGenre" v-model="slectedGen" @click="$emit('selectedOpt', slectedGen)">
+        <option value="All">All</option>
+        <option value="Rock">Rock</option>
+        <option value="Pop">Pop</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Metal">Metal</option>
     </select>
 </template>
 
@@ -13,7 +13,10 @@ export default {
     name: "SelecGenre",
     data() {
         return {
-            slectedGen: ''
+            slectedGen: 'All',
+            options: [
+                
+            ]
         }
     }
 }
