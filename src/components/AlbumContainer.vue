@@ -10,10 +10,14 @@
 
             </div>
 
+            <div class="col-12 text-center">
+                <SelectArtist :albums="albums" @selectedOpt="authorMethod" />
+            </div>
+
         </section>
 
         <section class="row mySection" v-if="load == false">
-            <div class="albums col-sm-6 col-md-4 my-col-lg-2" v-for="(album, index) in albumFiltredComputed" :key="index">
+            <div class="albums col-sm-6 col-md-4 my-col-lg-2" v-for="(album, index) in genreFiltredComputed" :key="index">
                 <AlbumItem :item="album" />
             </div>
         </section>
@@ -25,26 +29,30 @@
 <script>
 import AlbumItem from './AlbumItem';
 import SelecGenre from './SelecGenre';
+import SelectArtist from './SelectArtist';
 import Loader from './Loader';
 import axios from 'axios';
+
 
 export default {
     name: "AlbumContainer",
     components: {
         AlbumItem,
         Loader,
-        SelecGenre
+        SelecGenre,
+        SelectArtist
     },
     data() {
         return {
             api: 'https://flynn.boolean.careers/exercises/api/array/music',
             albums: [],
             load: true,
-            userChoice: ''
+            userChoice: '',
+            authorChoice: ''
         }
     },
     computed: {
-        albumFiltredComputed: function(){
+        genreFiltredComputed: function(){
             const newAlbum = this.albums.filter(
                 (elem) => {
 
@@ -56,12 +64,25 @@ export default {
                 }
             );
             return newAlbum
+        },
+        authorFiltred: function() {
+            const authorArr = this.albums.filter(
+                (element) => {
+                    
+                    return element.author.includes( this.authorChoice )
+                }
+            );
+            return authorArr
         }
     },
     methods: {
+        authorMethod: function(authSon) {
+            this.authorChoice = authSon;
+        },
         genreMethod: function(fromSon) {
             this.userChoice = fromSon;
         }
+        
     },
     created: function() {
         axios.get(this.api).then(
